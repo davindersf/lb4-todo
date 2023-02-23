@@ -17,10 +17,5 @@ export class MySequence extends MiddlewareSequence {
       console.log(`Error occurred at: ${new Date().toLocaleTimeString()}`);
       throw error;
     }
-
-    console.log({
-      requestedBaseUrl: context.requestedBaseUrl,
-      basePath: context.basePath,
-    });
   }
 }
