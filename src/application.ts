@@ -8,6 +8,7 @@ import {
 } from '@loopback/rest-explorer';
 import {ServiceMixin} from '@loopback/service-proxy';
 import path from 'path';
+import {checkReferer} from './middlewares';
 import {MySequence} from './sequence';
 
 export {ApplicationConfig};
@@ -20,6 +21,9 @@ export class TodoApplication extends BootMixin(
 
     // Set up the custom sequence
     this.sequence(MySequence);
+
+    // add this middleware to check referer against the allowed origins
+    this.middleware(checkReferer);
 
     // Set up default home page
     this.static('/', path.join(__dirname, '../public'));
