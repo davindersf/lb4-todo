@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import {ApplicationConfig, TodoApplication} from './application';
 
 export * from './application';
@@ -20,6 +23,9 @@ if (require.main === module) {
     rest: {
       port: +(process.env.PORT ?? 3000),
       host: process.env.HOST,
+      cors: {
+        origin: process.env.ALLOWED_ORIGIN,
+      },
       // The `gracePeriodForClose` provides a graceful close for http/https
       // servers with keep-alive clients. The default value is `Infinity`
       // (don't force-close). If you want to immediately destroy all sockets
