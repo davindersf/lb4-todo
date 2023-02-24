@@ -7,14 +7,9 @@ export const checkReferer: Middleware = async (
   context: MiddlewareContext,
   next: Next,
 ) => {
-  console.log('[REFERER MIDDLEWARES]');
   const referer = context.request.headers.referer;
 
-  if (!referer) {
-    // handle if referer doesn't exists
-  }
-
-  if (!allowedOrigins.includes(referer)) {
+  if (referer && allowedOrigins.includes(referer)) {
     const error = new Error('Referer not allowed');
     // @ts-ignore
     error.statusCode = 403; // 403 (Forbidden)
